@@ -1,6 +1,8 @@
 <template>
-  <img :src="image" alt="Pokémon card" class="pokemon-card" />
-  <p>{{ name }} {{ number }}-{{ cardInSet }}</p>
+  <div class="card">
+    <img :src="image" alt="Pokémon card" class="pokemon-card" />
+    <p>{{ name }} {{ number }}-{{ cardInSet }}</p>
+  </div>
 </template>
 
 <script>
@@ -10,7 +12,7 @@ export default {
     image: String,
     name: String,
     number: String,
-    cardInSet: String,
+    cardInSet: Number,
   },
 }
 </script>
@@ -22,6 +24,12 @@ export default {
   width: 187px;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .card p {

@@ -12,14 +12,14 @@
   </div>
 
   <div id="cards">
-    <div class="card" v-for="(card, index) in cards" :key="index">
-      <Card
-        :image="card.images.small"
-        :name="card.name"
-        :number="card.number"
-        :cardInSet="card.set.printedTotal"
-      />
-    </div>
+    <Card
+      v-for="(card, index) in cards"
+      :key="index"
+      :image="card.images.small"
+      :name="card.name"
+      :number="card.number"
+      :cardInSet="card.set.printedTotal"
+    />
   </div>
 </template>
 
@@ -95,12 +95,6 @@ export default {
   margin-left: 20px;
   background-color: transparent;
   cursor: pointer;
-}
-
-.card {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 #cards {
