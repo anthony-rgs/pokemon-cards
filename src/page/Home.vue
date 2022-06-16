@@ -6,6 +6,7 @@
         type="text"
         placeholder="Search a Pokémon card ..."
         v-model="name"
+        @keyup.enter="get"
       />
       <button @click="get()">Search</button>
     </div>
@@ -19,6 +20,7 @@
       :name="card.name"
       :number="card.number"
       :cardInSet="card.set.printedTotal"
+      :id="card.id"
     />
   </div>
 </template>
@@ -36,34 +38,29 @@ export default {
       cards: null,
     }
   },
+
   methods: {
     get() {
       const pokemon = this.name
-      console.log(this.cards)
-
       axios
         .get(`https://api.pokemontcg.io/v2/cards?q=name:${pokemon}`)
         .then((response) => {
           this.cards = response.data.data
-          console.log(this.cards)
         })
     },
   },
-
-  // setup() {
-  //   class Card {
-  //     constructor(image, name, cardNumber, setNumber) {
-  //       this.image = response.data
-  //     }
-  //   }
-  // },
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 60px 60px 0;
+}
+
 #head {
   display: flex;
-  margin: 60px 60px 0;
 }
 
 #head img {
@@ -93,7 +90,7 @@ export default {
 #nav button {
   height: 100%;
   margin-left: 20px;
-  background-color: transparent;
+  background-color: #fff;
   cursor: pointer;
 }
 

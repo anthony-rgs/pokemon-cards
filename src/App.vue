@@ -1,13 +1,10 @@
 <template>
-  <Home />
+  <router-view></router-view>
 </template>
 
 <script>
-import Home from './page/Home.vue'
-
 export default {
   name: 'App',
-  components: { Home },
 }
 </script>
 
