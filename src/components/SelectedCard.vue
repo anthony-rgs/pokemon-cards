@@ -60,7 +60,7 @@ export default {
   props: {
     name: String,
     number: String,
-    cardInSet: String,
+    cardInSet: Number,
     image: String,
     block: String,
     set: String,
@@ -68,10 +68,10 @@ export default {
     artist: String,
     date: String,
     cardmarketLink: String,
-    cardmarketLow: String,
-    cardmarketTrend: String,
-    cardmarketAverage7: String,
-    cardmarketAverage30: String,
+    cardmarketLow: Number,
+    cardmarketTrend: Number,
+    cardmarketAverage7: Number,
+    cardmarketAverage30: Number,
   },
 }
 </script>
@@ -106,8 +106,9 @@ p:last-child {
 
 #name {
   margin: 0 auto 10px;
-  width: fit-content;
+  width: 252px;
   font-size: 1.2rem;
+  text-align: center;
 }
 
 #selected-pokemon-card {
@@ -133,5 +134,25 @@ p:last-child {
 
 #cardmarket-logo {
   width: 200px;
+}
+
+@media screen and (max-width: 1030px) {
+  #selected-card {
+    flex-direction: column;
+  }
+
+  #right-section {
+    margin: 50px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  #left-section {
+    flex-direction: column;
+  }
+
+  #right-section {
+    margin: 50px;
+  }
 }
 </style>

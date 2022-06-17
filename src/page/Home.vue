@@ -10,6 +10,7 @@
       />
       <button @click="get()">Search</button>
     </div>
+    <p id="count" v-if="count != null">{{ count + ' results' }}</p>
   </div>
 
   <div id="cards">
@@ -36,6 +37,7 @@ export default {
   data() {
     return {
       cards: null,
+      count: null,
     }
   },
 
@@ -45,6 +47,8 @@ export default {
       axios
         .get(`https://api.pokemontcg.io/v2/cards?q=name:${pokemon}`)
         .then((response) => {
+          this.count = response.data.count
+          console.log(this.count)
           this.cards = response.data.data
         })
     },
@@ -65,7 +69,6 @@ body {
 
 #head img {
   height: 44px;
-  position: absolute;
 }
 
 #nav {
@@ -94,8 +97,77 @@ body {
   cursor: pointer;
 }
 
+button:hover {
+  -webkit-transform: scale(0.97);
+  -ms-transform: scale(0.97);
+  transform: scale(0.97);
+}
+
 #cards {
   display: grid;
   grid-template-columns: repeat(5, auto);
+}
+
+@media screen and (max-width: 1120px) {
+  body {
+    margin: 50px 50px 0;
+  }
+
+  #nav input {
+    width: 300px;
+  }
+
+  #cards {
+    grid-template-columns: repeat(4, auto);
+  }
+}
+
+@media screen and (max-width: 920px) {
+  body {
+    margin: 40px 40px 0;
+  }
+
+  #cards {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #nav input {
+    width: 190px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  body {
+    margin: 30px 30px 0;
+  }
+
+  #head {
+    flex-direction: column;
+  }
+
+  #head img {
+    margin-bottom: 25px;
+  }
+
+  #nav button,
+  #count {
+    display: none;
+  }
+
+  #cards {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 465px) {
+  body {
+    margin: 20px;
+  }
+
+  #cards {
+    grid-template-columns: repeat(1, auto);
+  }
 }
 </style>
