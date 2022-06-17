@@ -1,7 +1,7 @@
 <template>
-  <router-link to="/">
-    <button>H <img src="../assets/pokeball.png" /> me</button>
-  </router-link>
+  <button @click="$router.go(-1)">
+    H <img src="/assets/pokeball.png" /> me
+  </button>
   <SelectedCard
     v-for="(information, index) in informations"
     :key="index"
@@ -44,7 +44,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+body {
+  height: calc(100vh-100px);
+}
+
 button {
   font-size: 1.3rem;
   background-color: transparent;

@@ -1,6 +1,6 @@
 <template>
   <div id="head">
-    <img src="../assets/logo-pokemon.svg" alt="Pokémon logo" />
+    <img src="/assets/logo-pokemon.svg" alt="Pokémon logo" />
     <div id="nav">
       <input
         type="text"
@@ -13,7 +13,11 @@
     <p id="count" v-if="count != null">{{ count + ' results' }}</p>
   </div>
 
-  <div id="cards">
+  <div id="loading-container" v-if="isLoading">
+    <img src="/assets/pokeball.png" alt="pokeball" />
+  </div>
+
+  <div v-else id="cards">
     <Card
       v-for="(card, index) in cards"
       :key="index"
@@ -38,19 +42,40 @@ export default {
     return {
       cards: null,
       count: null,
+      name: null,
+      searchQuery: null,
+      isLoading: false,
     }
   },
 
   methods: {
     get() {
-      const pokemon = this.name
+      if (this.searchQuery) {
+        this.isLoading = true
+      }
+
       axios
-        .get(`https://api.pokemontcg.io/v2/cards?q=name:${pokemon}`)
+        .get(`https://api.pokemontcg.io/v2/cards?q=name:${this.searchQuery}`)
         .then((response) => {
           this.count = response.data.count
-          console.log(this.count)
           this.cards = response.data.data
+          this.isLoading = false
         })
+    },
+  },
+
+  created() {
+    this.searchQuery = this.$route.query?.search || ''
+    this.name = this.searchQuery
+    this.get()
+  },
+
+  watch: {
+    name(next) {
+      if (next) {
+        this.$router.replace(`?search=${next}`)
+      }
+      this.searchQuery = next
     },
   },
 }
@@ -69,6 +94,29 @@ body {
 
 #head img {
   height: 44px;
+}
+
+#loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+
+  animation: loading-spinner 1s infinite linear;
+}
+
+@keyframes loading-spinner {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-container img {
+  width: 40px;
 }
 
 #nav {

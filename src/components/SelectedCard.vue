@@ -1,7 +1,7 @@
 <template>
   <div id="selected-card">
     <div id="left-section">
-      <div>
+      <div id="card">
         <p id="name">
           {{ name }} <span class="blue"> {{ number }}-{{ cardInSet }} </span>
         </p>
@@ -29,7 +29,7 @@
       <div>
         <a :href="cardmarketLink" target="_blank">
           <img
-            src="../assets/cardmarket.webp"
+            src="/assets/cardmarket.webp"
             alt="Cardmarket Logo"
             id="cardmarket-logo"
           />
@@ -149,6 +149,18 @@ p:last-child {
 @media screen and (max-width: 710px) {
   #left-section {
     flex-direction: column;
+  }
+
+  #card {
+    width: fit-content;
+  }
+
+  #name {
+    width: fit-content;
+  }
+
+  #card-informations {
+    margin-left: 0px;
   }
 
   #right-section {
