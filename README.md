@@ -1,7 +1,7 @@
 <div align="center">
   <img src="public/assets/pokemon.gif" alt='gif présentation du projet' postion="center">
   <br>
-  <h3>Test Tylto · <a target="_blank" href="https://vuejs-project.site">vuejs-project.site</a></h3>
+  <h3>Pokémon · <a target="_blank" href="https://pokemon.anth.ooo">voir le site</a></h3>
   <img src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D" alt='vuejs'>
 </div>
 
